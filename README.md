@@ -1,2 +1,1 @@
 Kudo Gantenk.
-Gak
