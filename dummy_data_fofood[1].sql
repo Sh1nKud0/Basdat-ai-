@@ -82,11 +82,17 @@ ALTER TABLE [Order]
 ADD promo_id VARCHAR(10)
 
 ALTER TABLE [Order]
-DROP constraint FK_Order_Food
+DROP COLUMN promo_id
+
+ALTER TABLE [Order]
+DROP constraint FK_Order_Menu
 
 ALTER TABLE [Order]
 ADD CONSTRAINT FK_Order_Menu
 FOREIGN KEY (promo_id) REFERENCES Promo(promo_id);
+
+ALTER TABLE Menu
+ADD totalSell int NULL
 
 INSERT INTO Customer (customer_id, cust_name, address, phone_number, password) VALUES
 ('CUST0001', 'Customer 1', 'Address 1', '081250881342', 'vEFilwQq'),
@@ -229,6 +235,7 @@ INSERT INTO Drink (drink_id, drink_name, drink_price) VALUES
 ('DRINK0028', 'Drink 28', 10368),
 ('DRINK0029', 'Drink 29', 8198),
 ('DRINK0030', 'Drink 30', 4085);
+
 INSERT INTO Menu (menu_id, food_id, drink_id) VALUES
 ('MENU0001', 'FOOD0013', 'DRINK0029'),
 ('MENU0002', 'FOOD0029', 'DRINK0019'),
@@ -270,6 +277,52 @@ INSERT INTO Menu (menu_id, food_id, drink_id) VALUES
 ('MENU0038', 'FOOD0017', 'DRINK0012'),
 ('MENU0039', 'FOOD0003', 'DRINK0011'),
 ('MENU0040', 'FOOD0005', 'DRINK0015');
+
+UPDATE MENU 
+SET totalSell = CASE
+    WHEN menu_id = 'MENU00001' THEN 4
+    WHEN menu_id = 'MENU00002' THEN 5
+    WHEN menu_id = 'MENU00003' THEN 4
+    WHEN menu_id = 'MENU00004' THEN 4
+    WHEN menu_id = 'MENU00005' THEN 1
+    WHEN menu_id = 'MENU00006' THEN 5
+    WHEN menu_id = 'MENU00007' THEN 3
+    WHEN menu_id = 'MENU00008' THEN 4
+    WHEN menu_id = 'MENU00009' THEN 5
+    WHEN menu_id = 'MENU00010' THEN 1
+    WHEN menu_id = 'MENU00011' THEN 2
+    WHEN menu_id = 'MENU00012' THEN 3
+    WHEN menu_id = 'MENU00013' THEN 4
+    WHEN menu_id = 'MENU00014' THEN 5
+    WHEN menu_id = 'MENU00015' THEN 4
+    WHEN menu_id = 'MENU00016' THEN 1
+    WHEN menu_id = 'MENU00017' THEN 1
+    WHEN menu_id = 'MENU00018' THEN 2
+    WHEN menu_id = 'MENU00019' THEN 1
+    WHEN menu_id = 'MENU00020' THEN 2
+    WHEN menu_id = 'MENU00021' THEN 1
+    WHEN menu_id = 'MENU00022' THEN 2
+    WHEN menu_id = 'MENU00023' THEN 1
+    WHEN menu_id = 'MENU00024' THEN 5
+    WHEN menu_id = 'MENU00025' THEN 1
+    WHEN menu_id = 'MENU00026' THEN 1
+    WHEN menu_id = 'MENU00027' THEN 1
+    WHEN menu_id = 'MENU00028' THEN 5
+    WHEN menu_id = 'MENU00029' THEN 2
+    WHEN menu_id = 'MENU00030' THEN 1
+    WHEN menu_id = 'MENU00031' THEN 2
+    WHEN menu_id = 'MENU00032' THEN 1
+    WHEN menu_id = 'MENU00033' THEN 2
+    WHEN menu_id = 'MENU00034' THEN 5
+    WHEN menu_id = 'MENU00035' THEN 4
+    WHEN menu_id = 'MENU00036' THEN 4
+    WHEN menu_id = 'MENU00037' THEN 4
+    WHEN menu_id = 'MENU00038' THEN 3
+    WHEN menu_id = 'MENU00039' THEN 3
+    WHEN menu_id = 'MENU00040' THEN 2
+    ELSE totalSell
+END;
+
 INSERT INTO [Order] (order_id, customer_id, driver_id, seller_id, menu_id, order_date, time_order, order_price, pay_method, note) VALUES
 ('ORD00001', 'CUST0004', 'DRIV0002', 'SELL0008', 'MENU0004', '2024-01-01', '21:37:23', 51652, 'card', 'Double cheese'),
 ('ORD00002', 'CUST0005', 'DRIV0006', 'SELL0003', 'MENU0018', '2024-01-02', '02:28:26', 75230, 'cash', ''),
@@ -471,3 +524,208 @@ INSERT INTO [Order] (order_id, customer_id, driver_id, seller_id, menu_id, order
 ('ORD00198', 'CUST0022', 'DRIV0009', 'SELL0017', 'MENU0031', '2024-07-16', '20:33:18', 55939, 'q-ris', 'Double cheese'),
 ('ORD00199', 'CUST0011', 'DRIV0004', 'SELL0004', 'MENU0022', '2024-07-17', '19:01:36', 21381, 'card', ''),
 ('ORD00200', 'CUST0013', 'DRIV0008', 'SELL0019', 'MENU0009', '2024-07-18', '04:25:05', 47314, 'q-ris', 'Double cheese');
+
+UPDATE [ORDER] 
+SET promo_id = CASE
+    WHEN order_id = 'ORD00001' THEN 'PROM0001'
+    WHEN order_id = 'ORD00002' THEN 'PROM0002'
+    WHEN order_id = 'ORD00003' THEN 'PROM0003'
+    WHEN order_id = 'ORD00004' THEN 'PROM0004'
+    WHEN order_id = 'ORD00005' THEN 'PROM0005'
+    WHEN order_id = 'ORD00006' THEN 'PROM0006'
+    WHEN order_id = 'ORD00007' THEN 'PROM0007'
+    WHEN order_id = 'ORD00008' THEN 'PROM0008'
+    WHEN order_id = 'ORD00009' THEN 'PROM0009'
+    WHEN order_id = 'ORD00010' THEN 'PROM0010'
+    WHEN order_id = 'ORD00011' THEN 'PROM0001'
+    WHEN order_id = 'ORD00012' THEN 'PROM0002'
+    WHEN order_id = 'ORD00013' THEN 'PROM0003'
+    WHEN order_id = 'ORD00014' THEN 'PROM0004'
+    WHEN order_id = 'ORD00015' THEN 'PROM0005'
+    WHEN order_id = 'ORD00016' THEN 'PROM0006'
+    WHEN order_id = 'ORD00017' THEN 'PROM0007'
+    WHEN order_id = 'ORD00018' THEN 'PROM0008'
+    WHEN order_id = 'ORD00019' THEN 'PROM0009'
+    WHEN order_id = 'ORD00020' THEN 'PROM0010'
+    WHEN order_id = 'ORD00021' THEN 'PROM0001'
+    WHEN order_id = 'ORD00022' THEN 'PROM0002'
+    WHEN order_id = 'ORD00023' THEN 'PROM0003'
+    WHEN order_id = 'ORD00024' THEN 'PROM0004'
+    WHEN order_id = 'ORD00025' THEN 'PROM0005'
+    WHEN order_id = 'ORD00026' THEN 'PROM0006'
+    WHEN order_id = 'ORD00027' THEN 'PROM0007'
+    WHEN order_id = 'ORD00028' THEN 'PROM0008'
+    WHEN order_id = 'ORD00029' THEN 'PROM0009'
+    WHEN order_id = 'ORD00030' THEN 'PROM0010'
+    WHEN order_id = 'ORD00031' THEN 'PROM0001'
+    WHEN order_id = 'ORD00032' THEN 'PROM0002'
+    WHEN order_id = 'ORD00033' THEN 'PROM0003'
+    WHEN order_id = 'ORD00034' THEN 'PROM0004'
+    WHEN order_id = 'ORD00035' THEN 'PROM0005'
+    WHEN order_id = 'ORD00036' THEN 'PROM0006'
+    WHEN order_id = 'ORD00037' THEN 'PROM0007'
+    WHEN order_id = 'ORD00038' THEN 'PROM0008'
+    WHEN order_id = 'ORD00039' THEN 'PROM0009'
+    WHEN order_id = 'ORD00040' THEN 'PROM0010'
+    WHEN order_id = 'ORD00041' THEN 'PROM0001'
+    WHEN order_id = 'ORD00042' THEN 'PROM0002'
+    WHEN order_id = 'ORD00043' THEN 'PROM0003'
+    WHEN order_id = 'ORD00044' THEN 'PROM0004'
+    WHEN order_id = 'ORD00045' THEN 'PROM0005'
+    WHEN order_id = 'ORD00046' THEN 'PROM0006'
+    WHEN order_id = 'ORD00047' THEN 'PROM0007'
+    WHEN order_id = 'ORD00048' THEN 'PROM0008'
+    WHEN order_id = 'ORD00049' THEN 'PROM0009'
+    WHEN order_id = 'ORD00050' THEN 'PROM0010'
+    WHEN order_id = 'ORD00051' THEN 'PROM0001'
+    WHEN order_id = 'ORD00052' THEN 'PROM0002'
+    WHEN order_id = 'ORD00053' THEN 'PROM0003'
+    WHEN order_id = 'ORD00054' THEN 'PROM0004'
+    WHEN order_id = 'ORD00055' THEN 'PROM0005'
+    WHEN order_id = 'ORD00056' THEN 'PROM0006'
+    WHEN order_id = 'ORD00057' THEN 'PROM0007'
+    WHEN order_id = 'ORD00058' THEN 'PROM0008'
+    WHEN order_id = 'ORD00059' THEN 'PROM0009'
+    WHEN order_id = 'ORD00060' THEN 'PROM0010'
+    WHEN order_id = 'ORD00061' THEN 'PROM0001'
+    WHEN order_id = 'ORD00062' THEN 'PROM0002'
+    WHEN order_id = 'ORD00063' THEN 'PROM0003'
+    WHEN order_id = 'ORD00064' THEN 'PROM0004'
+    WHEN order_id = 'ORD00065' THEN 'PROM0005'
+    WHEN order_id = 'ORD00066' THEN 'PROM0006'
+    WHEN order_id = 'ORD00067' THEN 'PROM0007'
+    WHEN order_id = 'ORD00068' THEN 'PROM0008'
+    WHEN order_id = 'ORD00069' THEN 'PROM0009'
+    WHEN order_id = 'ORD00070' THEN 'PROM0010'
+    WHEN order_id = 'ORD00071' THEN 'PROM0001'
+    WHEN order_id = 'ORD00072' THEN 'PROM0002'
+    WHEN order_id = 'ORD00073' THEN 'PROM0003'
+    WHEN order_id = 'ORD00074' THEN 'PROM0004'
+    WHEN order_id = 'ORD00075' THEN 'PROM0005'
+    WHEN order_id = 'ORD00076' THEN 'PROM0006'
+    WHEN order_id = 'ORD00077' THEN 'PROM0007'
+    WHEN order_id = 'ORD00078' THEN 'PROM0008'
+    WHEN order_id = 'ORD00079' THEN 'PROM0009'
+    WHEN order_id = 'ORD00080' THEN 'PROM0010'
+    WHEN order_id = 'ORD00081' THEN 'PROM0001'
+    WHEN order_id = 'ORD00082' THEN 'PROM0002'
+    WHEN order_id = 'ORD00083' THEN 'PROM0003'
+    WHEN order_id = 'ORD00084' THEN 'PROM0004'
+    WHEN order_id = 'ORD00085' THEN 'PROM0005'
+    WHEN order_id = 'ORD00086' THEN 'PROM0006'
+    WHEN order_id = 'ORD00087' THEN 'PROM0007'
+    WHEN order_id = 'ORD00088' THEN 'PROM0008'
+    WHEN order_id = 'ORD00089' THEN 'PROM0009'
+    WHEN order_id = 'ORD00090' THEN 'PROM0010'
+    WHEN order_id = 'ORD00091' THEN 'PROM0001'
+    WHEN order_id = 'ORD00092' THEN 'PROM0002'
+    WHEN order_id = 'ORD00093' THEN 'PROM0003'
+    WHEN order_id = 'ORD00094' THEN 'PROM0004'
+    WHEN order_id = 'ORD00095' THEN 'PROM0005'
+    WHEN order_id = 'ORD00096' THEN 'PROM0006'
+    WHEN order_id = 'ORD00097' THEN 'PROM0007'
+    WHEN order_id = 'ORD00098' THEN 'PROM0008'
+    WHEN order_id = 'ORD00099' THEN 'PROM0009'
+    WHEN order_id = 'ORD00100' THEN 'PROM0010'
+    WHEN order_id = 'ORD00101' THEN 'PROM0001'
+    WHEN order_id = 'ORD00102' THEN 'PROM0002'
+    WHEN order_id = 'ORD00103' THEN 'PROM0003'
+    WHEN order_id = 'ORD00104' THEN 'PROM0004'
+    WHEN order_id = 'ORD00105' THEN 'PROM0005'
+    WHEN order_id = 'ORD00106' THEN 'PROM0006'
+    WHEN order_id = 'ORD00107' THEN 'PROM0007'
+    WHEN order_id = 'ORD00108' THEN 'PROM0008'
+    WHEN order_id = 'ORD00109' THEN 'PROM0009'
+    WHEN order_id = 'ORD00110' THEN 'PROM0010'
+    WHEN order_id = 'ORD00111' THEN 'PROM0001'
+    WHEN order_id = 'ORD00112' THEN 'PROM0002'
+    WHEN order_id = 'ORD00113' THEN 'PROM0003'
+    WHEN order_id = 'ORD00114' THEN 'PROM0004'
+    WHEN order_id = 'ORD00115' THEN 'PROM0005'
+    WHEN order_id = 'ORD00116' THEN 'PROM0006'
+    WHEN order_id = 'ORD00117' THEN 'PROM0007'
+    WHEN order_id = 'ORD00118' THEN 'PROM0008'
+    WHEN order_id = 'ORD00119' THEN 'PROM0009'
+    WHEN order_id = 'ORD00120' THEN 'PROM0010'
+    WHEN order_id = 'ORD00121' THEN 'PROM0001'
+    WHEN order_id = 'ORD00122' THEN 'PROM0002'
+    WHEN order_id = 'ORD00123' THEN 'PROM0003'
+    WHEN order_id = 'ORD00124' THEN 'PROM0004'
+    WHEN order_id = 'ORD00125' THEN 'PROM0005'
+    WHEN order_id = 'ORD00126' THEN 'PROM0006'
+    WHEN order_id = 'ORD00127' THEN 'PROM0007'
+    WHEN order_id = 'ORD00128' THEN 'PROM0008'
+    WHEN order_id = 'ORD00129' THEN 'PROM0009'
+    WHEN order_id = 'ORD00130' THEN 'PROM0010'
+    WHEN order_id = 'ORD00131' THEN 'PROM0001'
+    WHEN order_id = 'ORD00132' THEN 'PROM0002'
+    WHEN order_id = 'ORD00133' THEN 'PROM0003'
+    WHEN order_id = 'ORD00134' THEN 'PROM0004'
+    WHEN order_id = 'ORD00135' THEN 'PROM0005'
+    WHEN order_id = 'ORD00136' THEN 'PROM0006'
+    WHEN order_id = 'ORD00137' THEN 'PROM0007'
+    WHEN order_id = 'ORD00138' THEN 'PROM0008'
+    WHEN order_id = 'ORD00139' THEN 'PROM0009'
+    WHEN order_id = 'ORD00140' THEN 'PROM0010'
+    WHEN order_id = 'ORD00141' THEN 'PROM0001'
+    WHEN order_id = 'ORD00142' THEN 'PROM0002'
+    WHEN order_id = 'ORD00143' THEN 'PROM0003'
+    WHEN order_id = 'ORD00144' THEN 'PROM0004'
+    WHEN order_id = 'ORD00145' THEN 'PROM0005'
+    WHEN order_id = 'ORD00146' THEN 'PROM0006'
+    WHEN order_id = 'ORD00147' THEN 'PROM0007'
+    WHEN order_id = 'ORD00148' THEN 'PROM0008'
+    WHEN order_id = 'ORD00149' THEN 'PROM0009'
+    WHEN order_id = 'ORD00150' THEN 'PROM0010'
+    WHEN order_id = 'ORD00151' THEN 'PROM0001'
+    WHEN order_id = 'ORD00152' THEN 'PROM0002'
+    WHEN order_id = 'ORD00153' THEN 'PROM0003'
+    WHEN order_id = 'ORD00154' THEN 'PROM0004'
+    WHEN order_id = 'ORD00155' THEN 'PROM0005'
+    WHEN order_id = 'ORD00156' THEN 'PROM0006'
+    WHEN order_id = 'ORD00157' THEN 'PROM0007'
+    WHEN order_id = 'ORD00158' THEN 'PROM0008'
+    WHEN order_id = 'ORD00159' THEN 'PROM0009'
+    WHEN order_id = 'ORD00160' THEN 'PROM0010'
+    WHEN order_id = 'ORD00161' THEN 'PROM0001'
+    WHEN order_id = 'ORD00162' THEN 'PROM0002'
+    WHEN order_id = 'ORD00163' THEN 'PROM0003'
+    WHEN order_id = 'ORD00164' THEN 'PROM0004'
+    WHEN order_id = 'ORD00165' THEN 'PROM0005'
+    WHEN order_id = 'ORD00166' THEN 'PROM0006'
+    WHEN order_id = 'ORD00167' THEN 'PROM0007'
+    WHEN order_id = 'ORD00168' THEN 'PROM0008'
+    WHEN order_id = 'ORD00169' THEN 'PROM0009'
+    WHEN order_id = 'ORD00170' THEN 'PROM0010'
+    WHEN order_id = 'ORD00171' THEN 'PROM0001'
+    WHEN order_id = 'ORD00172' THEN 'PROM0002'
+    WHEN order_id = 'ORD00173' THEN 'PROM0003'
+    WHEN order_id = 'ORD00174' THEN 'PROM0004'
+    WHEN order_id = 'ORD00175' THEN 'PROM0005'
+    WHEN order_id = 'ORD00176' THEN 'PROM0006'
+    WHEN order_id = 'ORD00177' THEN 'PROM0007'
+    WHEN order_id = 'ORD00178' THEN 'PROM0008'
+    WHEN order_id = 'ORD00179' THEN 'PROM0009'
+    WHEN order_id = 'ORD00180' THEN 'PROM0010'
+    WHEN order_id = 'ORD00181' THEN 'PROM0001'
+    WHEN order_id = 'ORD00182' THEN 'PROM0002'
+    WHEN order_id = 'ORD00183' THEN 'PROM0003'
+    WHEN order_id = 'ORD00184' THEN 'PROM0004'
+    WHEN order_id = 'ORD00185' THEN 'PROM0005'
+    WHEN order_id = 'ORD00186' THEN 'PROM0006'
+    WHEN order_id = 'ORD00187' THEN 'PROM0007'
+    WHEN order_id = 'ORD00188' THEN 'PROM0008'
+    WHEN order_id = 'ORD00189' THEN 'PROM0009'
+    WHEN order_id = 'ORD00190' THEN 'PROM0010'
+    WHEN order_id = 'ORD00191' THEN 'PROM0001'
+    WHEN order_id = 'ORD00192' THEN 'PROM0002'
+    WHEN order_id = 'ORD00193' THEN 'PROM0003'
+    WHEN order_id = 'ORD00194' THEN 'PROM0004'
+    WHEN order_id = 'ORD00195' THEN 'PROM0005'
+    WHEN order_id = 'ORD00196' THEN 'PROM0006'
+    WHEN order_id = 'ORD00197' THEN 'PROM0007'
+    WHEN order_id = 'ORD00198' THEN 'PROM0008'
+    WHEN order_id = 'ORD00199' THEN 'PROM0009'
+    WHEN order_id = 'ORD00200' THEN 'PROM0010'
+    ELSE promo_id
+END;
