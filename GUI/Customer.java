@@ -29,6 +29,17 @@ public class Customer extends javax.swing.JFrame {
         txtNo.setText("");
         txtPassword.setText("");
     }
+
+    private void highlightRowInTable(String id) {
+    for (int i = 0; i < tblData.getRowCount(); i++) {
+        // Cocokkan ID dari tabel dengan ID yang ditampilkan di field
+        if (tblData.getValueAt(i, 0).toString().equals(id)) {
+            tblData.setRowSelectionInterval(i, i); // Highlight baris yang sesuai
+            tblData.scrollRectToVisible(tblData.getCellRect(i, 0, true)); // Scroll ke baris tersebut
+            break;
+        }
+    }
+    }  
     
     private void ShowData (){
         try {
@@ -447,6 +458,9 @@ public class Customer extends javax.swing.JFrame {
             txtAlamat.setText(rs.getString("address"));
             txtNo.setText(rs.getString("phone_number"));
             txtPassword.setText(rs.getString("password"));
+
+            // Highlight data baru di tabel
+            highlightRowInTable(rs.getString("customer_id"));
         } else {
             // Jika tidak ada data berikutnya
             JOptionPane.showMessageDialog(this, "Tidak ada data berikutnya.");
@@ -471,6 +485,9 @@ public class Customer extends javax.swing.JFrame {
             txtAlamat.setText(rs.getString("address"));
             txtNo.setText(rs.getString("phone_number"));
             txtPassword.setText(rs.getString("password"));
+
+            // Highlight data baru di tabel
+            highlightRowInTable(rs.getString("customer_id"));
         } else {
             // Jika tidak ada data
             JOptionPane.showMessageDialog(this, "Tidak ada data.");
@@ -567,6 +584,9 @@ public class Customer extends javax.swing.JFrame {
             txtAlamat.setText(rs.getString("address"));
             txtNo.setText(rs.getString("phone_number"));
             txtPassword.setText(rs.getString("password"));
+
+            // Highlight data baru di tabel
+            highlightRowInTable(rs.getString("customer_id"));
         } else {
             // Jika tidak ada data berikutnya
             JOptionPane.showMessageDialog(this, "Tidak ada data berikutnya.");
@@ -591,6 +611,9 @@ public class Customer extends javax.swing.JFrame {
             txtAlamat.setText(rs.getString("address"));
             txtNo.setText(rs.getString("phone_number"));
             txtPassword.setText(rs.getString("password"));
+
+            // Highlight data baru di tabel
+            highlightRowInTable(rs.getString("customer_id"));
         } else {
             // Jika tidak ada data
             JOptionPane.showMessageDialog(this, "Tidak ada data.");
