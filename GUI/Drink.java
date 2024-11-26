@@ -7,52 +7,15 @@
  *
  * @author Farras Akbar
  */
-import java.sql.*;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-public class Seller extends javax.swing.JFrame {
+public class Drink extends javax.swing.JFrame {
 
     /**
-     * Creates new form Seller
+     * Creates new form Drink
      */
-    public Statement st;
-    public ResultSet rs;
-    Connection cn = Koneksi.BukaKoneksi();
-    public Seller() {
+    public Drink() {
         initComponents();
-        
     }
-    
-    
-    private void ShowData (){
-        try {
-            st = cn.createStatement();
-            rs = st.executeQuery("SELECT * FROM Customer");
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("ID");
-            model.addColumn("Name");
-            model.addColumn("Alamat");
-            model.addColumn("No. Tlp");
-            model.addColumn("Password");
-            
-            //model.getDataVector().removeAllElements();
-            //model.fireTableDataChanged();
-            model.setRowCount(0);
-            
-            while (rs.next()) {
-                Object[] row = {
-                    rs.getString("customer_id"),
-                    rs.getString("cust_name"),
-                    rs.getString("address"),
-                    rs.getString("phone_number"),
-                    rs.getString("password")
-                };
-                model.addRow(row);
-                tblData.setModel(model);
-            }
-        } catch (Exception e) {
-        }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,15 +25,6 @@ public class Seller extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        id = new javax.swing.JLabel();
-        txtOperational = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
-        nama = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        umur = new javax.swing.JLabel();
-        txtRating = new javax.swing.JTextField();
-        btnInsert = new javax.swing.JButton();
-        txtAlamat = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
@@ -80,49 +34,19 @@ public class Seller extends javax.swing.JFrame {
         btnPrev = new javax.swing.JButton();
         btnnext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
+        id = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        nama = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        umur = new javax.swing.JLabel();
+        txtNo = new javax.swing.JTextField();
+        btnInsert = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
+        txtAlamat = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        id.setText("ID");
-
-        txtOperational.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOperationalActionPerformed(evt);
-            }
-        });
-
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
-
-        nama.setText("Name");
-
-        jLabel4.setText("Alamat");
-
-        umur.setText("Rating");
-
-        txtRating.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRatingActionPerformed(evt);
-            }
-        });
-
-        btnInsert.setText("Insert");
-        btnInsert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertActionPerformed(evt);
-            }
-        });
-
-        txtAlamat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAlamatActionPerformed(evt);
-            }
-        });
 
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,7 +65,7 @@ public class Seller extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Alamat", "Rating", "Operational Time"
+                "ID", "Name", "Alamat", "No. Tlp", "Password"
             }
         ));
         tblData.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,13 +124,52 @@ public class Seller extends javax.swing.JFrame {
             }
         });
 
+        id.setText("ID");
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+
+        nama.setText("Name");
+
+        jLabel4.setText("Alamat");
+
+        umur.setText("No. Tlp");
+
+        txtNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNoActionPerformed(evt);
+            }
+        });
+
+        btnInsert.setText("Insert");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
+
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Operational Time");
+        txtAlamat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlamatActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Password");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -232,27 +195,26 @@ public class Seller extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtOperational, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(24, 24, 24)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                        .addComponent(txtName)
+                                        .addComponent(txtAlamat)))
+                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(umur, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                            .addComponent(txtName)
-                                            .addComponent(txtAlamat)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                                        .addComponent(txtRating, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGap(22, 22, 22)
+                                    .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -277,11 +239,11 @@ public class Seller extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(umur)
-                            .addComponent(txtRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtOperational, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,68 +265,12 @@ public class Seller extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtOperationalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOperationalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtOperationalActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void txtRatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRatingActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRatingActionPerformed
-
-    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        try {
-            // Ambil data dari input field
-            String id = txtId.getText();
-            String name = txtName.getText();
-            String alamat = txtAlamat.getText();
-            String noTlp = txtRating.getText();
-            String password = txtOperational.getText();
-
-            // Validasi input
-            if (id.isEmpty() || name.isEmpty() || alamat.isEmpty() || noTlp.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Semua field harus diisi!");
-                return;
-            }
-
-            // Query untuk insert data ke database
-            String query = "INSERT INTO Customer (customer_id, cust_name, address, phone_number, password) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, id);
-            pst.setString(2, name);
-            pst.setString(3, alamat);
-            pst.setString(4, noTlp);
-            pst.setString(5, password);
-
-            // Eksekusi query
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan!");
-
-            // Bersihkan input field setelah insert
-            Clean();
-
-            // Perbarui tabel dengan memanggil ShowData
-            ShowData();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
-
-    }//GEN-LAST:event_btnInsertActionPerformed
-
-    private void txtAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAlamatActionPerformed
-
     private void tblDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDataMouseClicked
         txtId.setText(tblData.getValueAt(tblData.getSelectedRow(), 0).toString());
         txtName.setText(tblData.getValueAt(tblData.getSelectedRow(), 1).toString());
         txtAlamat.setText(tblData.getValueAt(tblData.getSelectedRow(), 2).toString());
-        txtRating.setText(tblData.getValueAt(tblData.getSelectedRow(), 3).toString());
-        txtOperational.setText(tblData.getValueAt(tblData.getSelectedRow(), 4).toString());
-
+        txtNo.setText(tblData.getValueAt(tblData.getSelectedRow(), 3).toString());
+        txtPassword.setText(tblData.getValueAt(tblData.getSelectedRow(), 4).toString());
     }//GEN-LAST:event_tblDataMouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -427,8 +333,8 @@ public class Seller extends javax.swing.JFrame {
 
             String name = txtName.getText();
             String alamat = txtAlamat.getText();
-            String noTlp = txtRating.getText();
-            String password = txtOperational.getText();
+            String noTlp = txtNo.getText();
+            String password = txtPassword.getText();
 
             // Konfirmasi pengguna
             int confirm = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin memperbarui data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
@@ -485,8 +391,8 @@ public class Seller extends javax.swing.JFrame {
                 txtId.setText(rs.getString("customer_id"));
                 txtName.setText(rs.getString("cust_name"));
                 txtAlamat.setText(rs.getString("address"));
-                txtRating.setText(rs.getString("phone_number"));
-                txtOperational.setText(rs.getString("password"));
+                txtNo.setText(rs.getString("phone_number"));
+                txtPassword.setText(rs.getString("password"));
 
                 // Highlight data baru di tabel
                 highlightRowInTable(rs.getString("customer_id"));
@@ -516,8 +422,8 @@ public class Seller extends javax.swing.JFrame {
                 txtId.setText(rs.getString("customer_id"));
                 txtName.setText(rs.getString("cust_name"));
                 txtAlamat.setText(rs.getString("address"));
-                txtRating.setText(rs.getString("phone_number"));
-                txtOperational.setText(rs.getString("password"));
+                txtNo.setText(rs.getString("phone_number"));
+                txtPassword.setText(rs.getString("password"));
 
                 // Highlight data baru di tabel
                 highlightRowInTable(rs.getString("customer_id"));
@@ -547,8 +453,8 @@ public class Seller extends javax.swing.JFrame {
                 txtId.setText(rs.getString("customer_id"));
                 txtName.setText(rs.getString("cust_name"));
                 txtAlamat.setText(rs.getString("address"));
-                txtRating.setText(rs.getString("phone_number"));
-                txtOperational.setText(rs.getString("password"));
+                txtNo.setText(rs.getString("phone_number"));
+                txtPassword.setText(rs.getString("password"));
 
                 // Highlight data baru di tabel
                 highlightRowInTable(rs.getString("customer_id"));
@@ -574,8 +480,8 @@ public class Seller extends javax.swing.JFrame {
                 txtId.setText(rs.getString("customer_id"));
                 txtName.setText(rs.getString("cust_name"));
                 txtAlamat.setText(rs.getString("address"));
-                txtRating.setText(rs.getString("phone_number"));
-                txtOperational.setText(rs.getString("password"));
+                txtNo.setText(rs.getString("phone_number"));
+                txtPassword.setText(rs.getString("password"));
 
                 // Highlight data baru di tabel
                 highlightRowInTable(rs.getString("customer_id"));
@@ -588,9 +494,63 @@ public class Seller extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLastActionPerformed
 
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoActionPerformed
+
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        try {
+            // Ambil data dari input field
+            String id = txtId.getText();
+            String name = txtName.getText();
+            String alamat = txtAlamat.getText();
+            String noTlp = txtNo.getText();
+            String password = txtPassword.getText();
+
+            // Validasi input
+            if (id.isEmpty() || name.isEmpty() || alamat.isEmpty() || noTlp.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Semua field harus diisi!");
+                return;
+            }
+
+            // Query untuk insert data ke database
+            String query = "INSERT INTO Customer (customer_id, cust_name, address, phone_number, password) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement pst = cn.prepareStatement(query);
+            pst.setString(1, id);
+            pst.setString(2, name);
+            pst.setString(3, alamat);
+            pst.setString(4, noTlp);
+            pst.setString(5, password);
+
+            // Eksekusi query
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan!");
+
+            // Bersihkan input field setelah insert
+            Clean();
+
+            // Perbarui tabel dengan memanggil ShowData
+            ShowData();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnInsertActionPerformed
+
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
+
+    private void txtAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlamatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -609,20 +569,20 @@ public class Seller extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Seller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Drink.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Seller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Drink.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Seller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Drink.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Seller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Drink.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Seller().setVisible(true);
+                new Drink().setVisible(true);
             }
         });
     }
@@ -645,12 +605,8 @@ public class Seller extends javax.swing.JFrame {
     private javax.swing.JTextField txtAlamat;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtOperational;
-    private javax.swing.JTextField txtRating;
+    private javax.swing.JTextField txtNo;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JLabel umur;
     // End of variables declaration//GEN-END:variables
-
-    private void Customer() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
